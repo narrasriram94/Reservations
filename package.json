@@ -1,0 +1,48 @@
+{
+  "name": "reservation-system",
+  "version": "1.0.0",
+  "description": "Reservation system with frontend and backend",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint '**/*.{js,ts,tsx}'",
+    "test": "jest",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "e2e-test": "jest --config=e2e/jest.config.js"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "aws-sdk": "^2.1040.0",
+    "axios": "^1.4.0",
+    "mysql2": "^3.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "rxjs": "^7.3.0",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/node": "^15.14.1",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "eslint": "^7.32.0",
+    "jest": "^27.1.1",
+    "serverless": "^2.68.0",
+    "serverless-pseudo-parameters": "^2.5.0",
+    "serverless-step-functions": "^3.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

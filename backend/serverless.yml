@@ -1,0 +1,54 @@
+service: reservation-app
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  search:
+    handler: lambdas/search.handler.search
+    events:
+      - http:
+          path: search
+          method: post
+
+  create:
+    handler: lambdas/crud.handler.create
+    events:
+      - http:
+          path: reservation
+          method: post
+
+  update:
+    handler: lambdas/crud.handler.update
+    events:
+      - http:
+          path: reservation/{id}
+          method: put
+
+  delete:
+    handler: lambdas/crud.handler.delete
+    events:
+      - http:
+          path: reservation/{id}
+          method: delete
+
+plugins:
+  - serverless-step-functions
+  - serverless-pseudo-parameters
+
+stepFunctions:
+  stateMachines:
+    searchStateMachine:
+      definition:
+        Comment: "Search State Machine"
+        StartAt: ParseSearchCriteria
+        States:
+          ParseSearchCriteria:
+            Type: Task
+            Resource: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:service}-${opt:stage, self:provider.stage}-search
+            Next: FetchResults
+          FetchResults:
+            Type: Task
+            Resource: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:service}-${opt:stage, self:provider.stage}-search
+            End: true
